@@ -13,7 +13,8 @@ namespace RightClick {
       InitializeComponent();
     }
 
-    bool capturing = false;
+    int capturing = -1;
+    Keys[] keys = new Keys[2];
 
     private const UInt32 MOUSEEVENTF_LEFTDOWN = 0x0002;
     private const UInt32 MOUSEEVENTF_LEFTUP = 0x0004;
@@ -21,6 +22,11 @@ namespace RightClick {
     private const UInt32 MOUSEEVENTF_RIGHTUP = 0x0010;
     private const UInt32 MOUSEEVENTF_MIDDLEDOWN = 0x0020;
     private const UInt32 MOUSEEVENTF_MIDDLEUP = 0x0040;
+    UInt32[] mouseDownItems = {
+      MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_MIDDLEDOWN};
+    UInt32[] mouseUpItems = {
+      MOUSEEVENTF_LEFTUP, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_MIDDLEUP};
+
 
     [DllImport("user32.dll")]
     private static extern void mouse_event(
@@ -31,48 +37,65 @@ namespace RightClick {
       IntPtr dwExtraInfo // application-defined information
     );
 
-    public static void SendClick() {
-      mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, new System.IntPtr());
-      mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, new System.IntPtr());
+    /// <summary>
+    /// Send a mouse up and mouse down event.
+    /// </summary>
+    /// <param name="button">0-left, 1-right</param>
+    public void SendClick(int button) {
+      mouse_event(mouseDownItems[button], 0, 0, 0, new System.IntPtr());
+      mouse_event(mouseUpItems[button], 0, 0, 0, new System.IntPtr());
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-      Keys k = (Keys)Properties.Settings.Default.Hotkey;
-      hotkey1.RegisterKey(TvShow.Hotkey.ModiferKey.MOD_NONE, k);
-      hotkey1.HotKeyPressed += new TvShow.Hotkey.HotKeyPressedEventHandler(hotkey1_HotKeyPressed);
-
-      this.Text = "RightClick: Hotkey-" + k.ToString();
+      try {
+        keys[0] = (Keys)Properties.Settings.Default.ClickKey;
+        lClick.Text = keys[0].ToString();
+        keys[1] = (Keys)Properties.Settings.Default.RightClickKey;
+        lRightClick.Text = keys[1].ToString();
+        hotkey1.RegisterKey(RightClick.Hotkey.ModiferKey.MOD_NONE, keys[0]);
+        hotkey1.RegisterKey(RightClick.Hotkey.ModiferKey.MOD_NONE, keys[1]);
+        hotkey1.HotKeyPressed += new RightClick.Hotkey.HotKeyPressedEventHandler(hotkey1_HotKeyPressed);
+      }
+      catch (Exception ex) {
+        MessageBox.Show(ex.Message);
+      }
     }
 
     void hotkey1_HotKeyPressed(Keys Key) {
-      SendClick();
+      for (int i = 0; i < keys.Length; ++i) {
+        if (Key == keys[i])
+          SendClick(i);
+      }
       System.Diagnostics.Debug.WriteLine("hotkey1_HotKeyPressed: " + Key.ToString());
     }
 
-    private void timer1_Tick(object sender, EventArgs e) {
-      SendClick();
-      timer1.Enabled = false;
-    }
-
-    private void button1_Click(object sender, EventArgs e) {
-      lPrompt.Text = "Press the new hotkey";
-      lPrompt.Visible=true;
+    private void bClick_Click(object sender, EventArgs e) {
+      capturing = 0;
+      textBox1.Visible = true;
       textBox1.Focus();
-      capturing=true;
     }
 
-    private void textBox1_KeyDown(object sender, KeyEventArgs e) {
-      label1.Text = e.KeyCode.ToString();
-      if (capturing) {
-        Keys k = e.KeyCode; 
-        DialogResult r= MessageBox.Show("You pressed " + k.ToString() + "\r\n" +
+    private void bRightClick_Click(object sender, EventArgs e) {
+      capturing = 1;
+      textBox1.Visible = true;
+      textBox1.Focus();
+    }
+
+    private void form_KeyDown(object sender, KeyEventArgs e) {
+      if (capturing != -1) {
+        Keys k = e.KeyCode;
+        DialogResult r = MessageBox.Show("You pressed " + k.ToString() + "\r\n" +
           "Save and restart RightClick?", "Save", MessageBoxButtons.YesNo);
         if (r == DialogResult.Yes) {
-          Properties.Settings.Default.Hotkey = (int)k;
+          keys[capturing] = k;
+          Properties.Settings.Default.ClickKey = (int) keys[0];
+          Properties.Settings.Default.RightClickKey = (int) keys[1];
           Properties.Settings.Default.Save();
+          capturing = -1;
           Application.Restart();
         }
       }
     }
+
   }
 }
