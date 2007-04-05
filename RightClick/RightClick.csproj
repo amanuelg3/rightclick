@@ -63,21 +63,11 @@
     <Compile Include="Hotkey.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HotList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HotList.designer.cs">
-      <DependentUpon>HotList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HotList.resx">
-      <DependentUpon>HotList.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

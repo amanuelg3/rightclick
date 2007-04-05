@@ -26,12 +26,24 @@ namespace RightClick.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("192")]
-        public int Hotkey {
+        public int ClickKey {
             get {
-                return ((int)(this["Hotkey"]));
+                return ((int)(this["ClickKey"]));
             }
             set {
-                this["Hotkey"] = value;
+                this["ClickKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("193")]
+        public int RightClickKey {
+            get {
+                return ((int)(this["RightClickKey"]));
+            }
+            set {
+                this["RightClickKey"] = value;
             }
         }
     }

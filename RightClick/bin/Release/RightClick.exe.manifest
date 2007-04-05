@@ -27,24 +27,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RightClick.exe" size="28672">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RightClick.exe" size="24576">
       <assemblyIdentity name="RightClick" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>NPIqgA0FzhAL/hBZ+39/MAh0a6w=</dsig:DigestValue>
+        <dsig:DigestValue>Gf/gQj0sX4mbRCF9mv3s8eSAWMg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="RightClick.exe.config" size="808">
+  <file name="RightClick.exe.config" size="935">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>DKnkqm2nVA0FUrCx5w5hPo24tmE=</dsig:DigestValue>
+      <dsig:DigestValue>MmgOYKAi41UYP9SUxFL63ay/Rs8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
