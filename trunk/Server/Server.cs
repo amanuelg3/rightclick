@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Server {
-  public partial class Form1 : Form {
-    public Form1() {
+namespace CR.RightClick.Server {
+  public partial class Server : Form {
+    public Server() {
       InitializeComponent();
     }
   }
