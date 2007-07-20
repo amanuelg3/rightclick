@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Net.Sockets;
 
 namespace CR.RightClick.Client {
-  public partial class Form1 : Form {
+  public partial class ClientWindow : Form {
     UdpClient socket;
     public enum EventTypeEnum : byte {
       MouseMove,  // bytes 2-5=x, bytes 6-9=y
@@ -18,10 +18,11 @@ namespace CR.RightClick.Client {
       KeyUp       // bytes 2-3=keycode
     }
 
-    public Form1() {
+    public ClientWindow() {
       InitializeComponent();
       socket = new UdpClient(Properties.Settings.Default.Server,
         Properties.Settings.Default.port);
+      Opacity = .2;
     }
 
     void Expand() {

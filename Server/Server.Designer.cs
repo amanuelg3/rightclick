@@ -1,5 +1,5 @@
-namespace Server {
-  partial class Form1 {
+namespace CR.RightClick.Server {
+  partial class Server {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -23,12 +23,19 @@ namespace Server {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      this.components = new System.ComponentModel.Container();
+      this.SuspendLayout();
+      // 
+      // Server
+      // 
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.Text = "Form1";
+      this.ClientSize = new System.Drawing.Size(292, 266);
+      this.Name = "Server";
+      this.Text = "Remote Control Server";
+      this.ResumeLayout(false);
+
     }
 
     #endregion
   }
 }
-
