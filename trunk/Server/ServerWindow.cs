@@ -27,8 +27,7 @@ namespace CR.RightClick.Server {
     }
 
     private void ServerWindow_FormClosing(object sender, FormClosingEventArgs e) {
-      if (netThread != null)
-        netThread.Abort();
+      if (netThread != null) netThread.Abort();
     }
 
   }
