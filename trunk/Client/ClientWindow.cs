@@ -11,16 +11,17 @@ namespace CR.RightClick.Client {
   public partial class ClientWindow : Form {
     UdpClient socket;
     public enum EventTypeEnum : byte {
-      MouseMove,  // bytes 2-5=x, bytes 6-9=y
-      MouseDown,  // byte 2=button
-      MouseUp,    // byte 2=button
-      KeyDown,    // bytes 2-3=keycode
-      KeyUp       // bytes 2-3=keycode
+      MouseMove,  // bytes 4-7=x, bytes 8-11=y
+      MouseDown,  // byte 4=button
+      MouseUp,    // byte 4=button
+      KeyDown,    // bytes 4-7=keycode
+      KeyUp       // bytes 4-7=keycode
     }
 
     public ClientWindow() {
       InitializeComponent();
-      socket = new UdpClient(Properties.Settings.Default.Server,
+      socket = new UdpClient(
+        Properties.Settings.Default.Server,
         Properties.Settings.Default.port);
       Opacity = .2;
     }
@@ -48,7 +49,11 @@ namespace CR.RightClick.Client {
       Collapse();
     }
 
-    byte[] Command = new byte[16];
+    byte[] Command = new byte[] {
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0,
+      0,0,0,0};
     private void Form1_MouseMove(object sender, MouseEventArgs e) {
       if (e.Location.X >= ClientRectangle.Width - 1)
         Collapse();
@@ -58,8 +63,8 @@ namespace CR.RightClick.Client {
       Command[0]= (byte) EventTypeEnum.MouseMove;
       byte[] b1=BitConverter.GetBytes(x);
       byte[] b2=BitConverter.GetBytes(y);
-      Array.Copy(b1,Command,b1.Length);
-      Array.Copy(b2,Command,b1.Length);
+      Array.Copy(b1,0,Command,4,b1.Length);
+      Array.Copy(b2,0,Command,8,b2.Length);
       socket.Send(Command, 16);
     }
 
@@ -73,6 +78,55 @@ namespace CR.RightClick.Client {
 
     private void quitToolStripMenuItem_Click(object sender, EventArgs e) {
       Close();
+    }
+
+    private const UInt32 MOUSEEVENTF_LEFTDOWN = 0x0002;
+    private const UInt32 MOUSEEVENTF_LEFTUP = 0x0004;
+    private const UInt32 MOUSEEVENTF_RIGHTDOWN = 0x0008;
+    private const UInt32 MOUSEEVENTF_RIGHTUP = 0x0010;
+    private const UInt32 MOUSEEVENTF_MIDDLEDOWN = 0x0020;
+    private const UInt32 MOUSEEVENTF_MIDDLEUP = 0x0040;
+
+    private void ClientWindow_MouseDown(object sender, MouseEventArgs e) {
+      UInt32 x=0;
+      switch (e.Button) {
+        case MouseButtons.Left:
+          x = MOUSEEVENTF_LEFTDOWN;
+          break;
+        case MouseButtons.Right:
+          x = MOUSEEVENTF_RIGHTDOWN;
+          break;
+        case MouseButtons.Middle:
+          x = MOUSEEVENTF_MIDDLEDOWN;
+          break;
+      }
+      if (x > 0) {
+        Command[0] = (byte)EventTypeEnum.MouseDown;
+        byte[] b1 = BitConverter.GetBytes(x);
+        Array.Copy(b1, 0, Command, 4, b1.Length);
+        socket.Send(Command, 16);
+      }
+    }
+
+    private void ClientWindow_MouseUp(object sender, MouseEventArgs e) {
+      UInt32 x=0;
+      switch (e.Button) {
+        case MouseButtons.Left:
+          x = MOUSEEVENTF_LEFTUP;
+          break;
+        case MouseButtons.Right:
+          x = MOUSEEVENTF_RIGHTUP;
+          break;
+        case MouseButtons.Middle:
+          x = MOUSEEVENTF_MIDDLEUP;
+          break;
+      }
+      if (x > 0) {
+        Command[0] = (byte)EventTypeEnum.MouseUp;
+        byte[] b1 = BitConverter.GetBytes(x);
+        Array.Copy(b1, 0, Command, 4, b1.Length);
+        socket.Send(Command, 16);
+      }
     }
   }
 }

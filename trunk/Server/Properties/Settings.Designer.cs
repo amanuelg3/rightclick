@@ -26,9 +26,9 @@ namespace CR.RightClick.Server.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1200")]
-        public string port {
+        public int port {
             get {
-                return ((string)(this["port"]));
+                return ((int)(this["port"]));
             }
             set {
                 this["port"] = value;

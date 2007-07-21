@@ -1,5 +1,5 @@
 namespace CR.RightClick.Server {
-  partial class Server {
+  partial class ServerWindow {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -25,17 +25,20 @@ namespace CR.RightClick.Server {
     private void InitializeComponent() {
       this.SuspendLayout();
       // 
-      // Server
+      // ServerWindow
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(292, 266);
-      this.Name = "Server";
+      this.Name = "ServerWindow";
       this.Text = "Remote Control Server";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerWindow_FormClosing);
+      this.Load += new System.EventHandler(this.ServerWindow_Load);
       this.ResumeLayout(false);
 
     }
 
     #endregion
+
   }
 }

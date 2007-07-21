@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CR.RightClick.Server.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="port" Type="System.String" Scope="User">
+    <Setting Name="port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1200</Value>
     </Setting>
   </Settings>
