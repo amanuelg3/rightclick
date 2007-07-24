@@ -1,0 +1,10 @@
+bin\Debug\Server.exe
+bin\Debug\Server.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\CR.RightClick.Server.Properties.Resources.resources
+obj\Debug\Server.csproj.GenerateResource.Cache
+obj\Debug\Server.exe
+obj\Debug\Server.pdb
+bin\Debug\Server.exe.config
+obj\Debug\CR.RightClick.Server.ServerWindow.resources
+bin\Debug\runserver.bat

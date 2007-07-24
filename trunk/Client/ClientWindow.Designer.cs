@@ -66,8 +66,8 @@ namespace CR.RightClick.Client {
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.WhiteSmoke;
-      this.ClientSize = new System.Drawing.Size(374, 265);
-      this.Cursor = System.Windows.Forms.Cursors.Cross;
+      this.ClientSize = new System.Drawing.Size(333, 240);
+      this.Cursor = System.Windows.Forms.Cursors.No;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
       this.Name = "ClientWindow";
       this.Opacity = 0.2;
@@ -77,7 +77,9 @@ namespace CR.RightClick.Client {
       this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
       this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClientWindow_MouseUp);
       this.MouseLeave += new System.EventHandler(this.Form1_MouseLeave);
+      this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ClientWindow_KeyUp);
       this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClientWindow_KeyDown);
       this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientWindow_MouseDown);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.contextMenuStrip1.ResumeLayout(false);

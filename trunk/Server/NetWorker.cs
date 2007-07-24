@@ -79,7 +79,6 @@ namespace CR.RightClick.Server
       this.MainWindow = MainWindow;
       System.Net.IPEndPoint endPoint = new System.Net.IPEndPoint(
         IPAddress.Any, Properties.Settings.Default.port);
-
       System.Diagnostics.Debug.WriteLine("Thread started");
 
       while (true)
@@ -109,9 +108,19 @@ namespace CR.RightClick.Server
               y = BitConverter.ToInt32(b, 8);
               mouse_event(0x800, 640, 512, (uint)y, IntPtr.Zero);
               break;
+            case EventTypeEnum.KeyDown:
+              x = BitConverter.ToInt32(b, 4);
+              y = BitConverter.ToInt32(b, 8);
+              keybd_event(b[1],0,0,0);
+              break;
+            case EventTypeEnum.KeyUp:
+              x = BitConverter.ToInt32(b, 4);
+              y = BitConverter.ToInt32(b, 8);
+              keybd_event(b[1], 0, KEYEVENTF_KEYUP, 0);
+              break;
           }
         }
-        System.Threading.Thread.Sleep(30);
+        System.Threading.Thread.Sleep(15);
       }
     }
   }
