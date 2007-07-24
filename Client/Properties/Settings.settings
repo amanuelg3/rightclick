@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">win2k-1</Value>
+      <Value Profile="(Default)">mira</Value>
     </Setting>
     <Setting Name="port" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1200</Value>

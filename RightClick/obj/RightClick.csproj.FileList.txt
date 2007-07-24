@@ -1,0 +1,13 @@
+bin\Debug\RightClick.exe.config
+bin\Debug\RightClick.exe.manifest
+bin\Debug\RightClick.application
+bin\Debug\RightClick.exe
+bin\Debug\RightClick.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\RightClick.Form1.resources
+obj\Debug\RightClick.Properties.Resources.resources
+obj\Debug\RightClick.csproj.GenerateResource.Cache
+obj\Debug\RightClick.exe.manifest
+obj\Debug\RightClick.application
+obj\Debug\RightClick.exe
+obj\Debug\RightClick.pdb
