@@ -30,5 +30,26 @@ namespace CR.RightClick.Server {
       if (netThread != null) netThread.Abort();
     }
 
+    private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e) {
+
+    }
+
+    private void quitToolStripMenuItem_Click(object sender, EventArgs e) {
+      Close();
+    }
+
+    private void notifyIcon1_Click(object sender, EventArgs e) {
+      Show();
+      WindowState = FormWindowState.Normal;
+    }
+
+    private void bHide_Click(object sender, EventArgs e) {
+      this.Visible = false;
+    }
+
+    private void bExit_Click(object sender, EventArgs e) {
+      Close();
+    }
+
   }
 }

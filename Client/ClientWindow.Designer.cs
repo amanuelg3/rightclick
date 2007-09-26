@@ -66,13 +66,13 @@ namespace CR.RightClick.Client {
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.WhiteSmoke;
-      this.ClientSize = new System.Drawing.Size(333, 240);
+      this.ClientSize = new System.Drawing.Size(325, 286);
       this.Cursor = System.Windows.Forms.Cursors.No;
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
       this.Name = "ClientWindow";
-      this.Opacity = 0.2;
+      this.Opacity = 0.1;
       this.ShowInTaskbar = false;
-      this.Text = "Form1";
+      this.Text = "Remote Client";
       this.TopMost = true;
       this.MouseEnter += new System.EventHandler(this.Form1_MouseEnter);
       this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClientWindow_MouseUp);
